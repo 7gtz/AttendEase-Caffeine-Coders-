@@ -32,7 +32,7 @@ const GetCombinedAttendanceForm = ({ contract, account }) => {
         value={sectionId}
         onChange={(e) => setSectionId(e.target.value)}
       />
-      <button type="submit">Get Attendance</button>
+      <button type="submit" className="att">Get Attendance</button>
       <p>{message}</p>
     </form>
   );

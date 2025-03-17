@@ -10,20 +10,92 @@ input, button { padding: 8px; }
 button { background-color: #007bff; color: white; border: none; cursor: pointer; }
 button:hover { background-color: #0056b3; }
 li{list-style: none;} 
-.attendance{display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;}
-.att{
+.attendance{display:grid; grid-template-columns: 1fr 1fr; padding: 10px; border-bottom: 1px solid #ccc;}
+
+.records {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .records h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .records > div {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .records textarea {
     width: 100%;
-    margin-bottom:20px;
-    margin-top:5px;
-}
-.records{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+  }
+  
+  .records input[type="number"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 150px;
+  }
+  
+  .att {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .records .att:hover {
+    background-color: #0056b3;
+  }
+  
+  .records .button-group {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     align-items: center;
-    width: 100%;
-    margin-bottom:20px;
-    margin-top:5px;
-}
+    margin-top: 10px;
+  }
+  
+  .records select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .records ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .records li {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  
+  .records p {
+    text-align: center;
+    color: #666;
+  }

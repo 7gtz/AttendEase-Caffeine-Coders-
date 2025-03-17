@@ -32,7 +32,7 @@ const RequestAttendanceChangeForm = ({ contract, account }) => {
         value={studentAddress}
         onChange={(e) => setStudentAddress(e.target.value)}
       />
-      <button type="submit">Request</button>
+      <button type="submit" className="att">Request</button>
       <p>{message}</p>
     </form>
   );
