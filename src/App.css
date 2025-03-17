@@ -1,0 +1,29 @@
+.App { text-align: center; padding: 20px; }
+nav { margin: 20px 0; }
+nav a { margin: 0 10px; }
+form { display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin: 20px auto; }
+input, button { padding: 8px; }
+button { background-color: #007bff; color: white; border: none; }
+form { display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin: 20px auto; }
+form div { display: flex; gap: 10px; align-items: center; }
+input, button { padding: 8px; }
+button { background-color: #007bff; color: white; border: none; cursor: pointer; }
+button:hover { background-color: #0056b3; }
+li{list-style: none;} 
+.attendance{display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ccc;}
+.att{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom:20px;
+    margin-top:5px;
+}
+.records{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom:20px;
+    margin-top:5px;
+}
