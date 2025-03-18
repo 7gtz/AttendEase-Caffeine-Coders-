@@ -4,7 +4,8 @@ pragma solidity ^0.8.0;
 contract CollegeAttendance {
 
     constructor() {
-        admin = 0x0db5c27c126947b1d30aa6128d2fdbbb3ab3125c; 
+        admin = 0x850692CE85850278B754695fa4eb69d6840745d5; 
+        admin = msg.sender;
     }
 
     struct Subject {
@@ -43,7 +44,7 @@ contract CollegeAttendance {
     uint256 public sectionCounter;
     uint256 public classCounter;
     uint256 public requestCounter;
-    uint256 public constant GEOHASH_TOLERANCE_BYTES = 5;
+    uint256 public constant GEOHASH_TOLERANCE_BYTES = 8;
     mapping(address => string) public userNames;
     mapping(uint256 => Section) public sections;
     mapping(bytes32 => AdjustmentRequest) public adjustmentRequests;
@@ -86,8 +87,9 @@ contract CollegeAttendance {
         pure 
         returns (bool) 
     {
+        require(prefixBytes > 0, "Zero prefix not allowed");
         require(prefixBytes <= 32, "Prefix too large");
-        if (prefixBytes == 0) return true; // No tolerance check if 0 bytes
+        require(prefixBytes >= 8, "Precision too low for attendance");
         bytes32 mask = bytes32((1 << (256 - (prefixBytes * 8))) - 1) ^ bytes32(type(uint256).max);
         return (geohash1 & mask) == (geohash2 & mask);
     }
@@ -136,7 +138,6 @@ contract CollegeAttendance {
         address teacher
     ) external onlyAdmin {
         Section storage section = sections[sectionId];
-        
         for (uint256 i = 0; i < section.subjectIds.length; i++) {
             Subject storage s = section.subjects[i];
             if (keccak256(bytes(s.name)) == keccak256(bytes(subjectName))) {
