@@ -1,0 +1,144 @@
+li{list-style: none;}
+*{
+    margin: 0;
+    padding: 0;
+ 
+}
+.nav{
+    display: flex;
+    font-size: 18px;
+    align-items: center;
+    background-color:#86d4ca;;
+    padding: 10px 20px;
+    gap:40px;
+    font-family: "inter";
+}
+.nav a{
+    color: rgb(3, 3, 38);
+    text-decoration: none;
+}
+.home h2{
+    font-size: 80px;
+    color: #031c35;
+    font-family:"seoge ui";
+}
+.photo{
+    height: 50%;
+    width:50%;
+    size:50%;
+    object-fit: cover;
+}
+.logo{
+    height: 700px;
+    width: 700px;
+    object-fit:fill
+}
+.view{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: #86add4;
+    height: 100%;
+}
+
+
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #E3F2FD; /* Light Blue Background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Page Container */
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Headings */
+h2, h3 {
+    text-align: center;
+    color: #1E88E5; /* Dark Blue */
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #64B5F6;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    padding: 12px;
+    background-color: #1E88E5; /* Dark Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 323px;
+}
+
+button:hover {
+    background-color: #1565C0; /* Darker Blue */
+}
+
+/* Forms */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.get-location-btn{
+    padding: 8px;
+    background-color: #1E88E5; /* Dark Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 193px;
+}
+
+button:hover {
+    background-color: #1565C0;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
