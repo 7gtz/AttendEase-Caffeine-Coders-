@@ -5,7 +5,7 @@ const Header = ({ account, role, userName }) => {
   return (
     <header>
       <nav>
-        <ul>
+        <ul class="nav">
           <li><Link to="/">Home</Link></li>
           {role === "admin" && <li><Link to="/sections">Sections</Link></li>}
           <li><Link to="/subjects">Subjects</Link></li>

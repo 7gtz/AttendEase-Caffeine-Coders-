@@ -2,18 +2,20 @@ import React from "react";
 
 const HomePage = () => {
   return (
-    <div>
-      <h2 className="welc">Welcome to College Attendance</h2>
+    <div class="view">
+    <div class="photo">
+      <img class="logo" src="/finallogo.jpg" alt="My Image"  />
+    </div>
+    <div class="home">
+      <h2>Welcome to AttendEase!</h2>
       <p>
         Manage your college attendance on the Educhain network. Navigate to the appropriate dashboard:
       </p>
-      <ul>
-        <li><strong>Admin</strong>: Manage sections, subjects, and students.</li>
-        <li><strong>Teacher</strong>: Schedule classes and close attendance.</li>
-        <li><strong>Student</strong>: Mark and view attendance.</li>
-        <li><strong>Sections/Subjects</strong>: View details.</li>
-      </ul>
+      <p class="desc">
+      AttendEase is a Web3-based attendance system that ensures secure, transparent, and fraud-proof tracking using blockchain and smart contracts. Students check in via geohash, and records are immutably stored. With Web3 wallet authentication and real-time access, it streamlines attendance management while eliminating manual errors and tampering. 
+      </p>
     </div>
+  </div>
   );
 };
 

@@ -13,6 +13,7 @@ import StudentPage from "./pages/StudentPage";
 import SubjectsPage from "./pages/SubjectsPage";
 import TeacherPage from "./pages/TeacherPage";
 import "./App.css";
+import "./App2.css";
 
 
 function App() {
