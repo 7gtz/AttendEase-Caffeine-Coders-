@@ -6,6 +6,7 @@ import RemoveStudentForm from "../Forms/RemoveStudentForm";
 import TransferAdminForm from "../Forms/TransferAdminForm";
 import ApproveAdjustmentForm from "../Forms/ApproveAdjustmentForm";
 import SectionList from "../Lists/SectionList";
+import TeacherList from "../Lists/TeacherList";
 
 const AdminPanel = ({ contract, account }) => {
   return (
@@ -23,7 +24,12 @@ const AdminPanel = ({ contract, account }) => {
           <TransferAdminForm contract={contract} account={account} />
         </div>
       </div>
-      <SectionList contract={contract} account={account} />
+      <div style={{ marginTop: "20px" }}>
+        <TeacherList contract={contract} account={account} />
+      </div>
+      <div style={{ marginTop: "20px" }}>
+        <SectionList contract={contract} account={account} />
+      </div>
     </div>
   );
 };

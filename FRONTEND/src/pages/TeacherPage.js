@@ -1,7 +1,7 @@
 import React from "react";
 import TeacherPanel from "../components/Panels/TeacherPanel";
 
-const TeacherPage = ({ contract, account, role }) => {
+const TeacherPage = ({ contract, account}) => {
   return (
     <div>
       <h2>Teacher Dashboard</h2>

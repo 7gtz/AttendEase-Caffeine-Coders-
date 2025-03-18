@@ -4,7 +4,8 @@ pragma solidity ^0.8.0;
 contract CollegeAttendance {
 
     constructor() {
-        admin = 0x0db5c27c126947b1d30aa6128d2fdbbb3ab3125c; 
+        admin = 0x850692CE85850278B754695fa4eb69d6840745d5; 
+        admin = message.sender;
     }
 
     struct Subject {
@@ -137,7 +138,6 @@ contract CollegeAttendance {
         address teacher
     ) external onlyAdmin {
         Section storage section = sections[sectionId];
-        
         for (uint256 i = 0; i < section.subjectIds.length; i++) {
             Subject storage s = section.subjects[i];
             if (keccak256(bytes(s.name)) == keccak256(bytes(subjectName))) {

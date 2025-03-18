@@ -36,6 +36,35 @@ const AttendanceList = ({ contract, account, isStudentMode = false }) => {
     }
   };
 
+  const fetchStudentNames = async (addresses) => {
+    try {
+      const newNames = {};
+      const addressesToFetch = addresses.filter(addr => !studentNames[addr]);
+      
+      if (addressesToFetch.length > 0) {
+        const names = await Promise.all(
+          addressesToFetch.map(async (addr) => {
+            try {
+              const name = await contract.methods.getUserName(addr).call();
+              return { addr, name: name.length > 0 ? name : "Unnamed" };
+            } catch (error) {
+              console.error(`Error fetching name for ${addr}:`, error);
+              return { addr, name: "Unnamed" };
+            }
+          })
+        );
+        
+        names.forEach(({ addr, name }) => {
+          newNames[addr] = name;
+        });
+        
+        setStudentNames(prev => ({ ...prev, ...newNames }));
+      }
+    } catch (error) {
+      console.error("Error in batch name fetching:", error);
+    }
+  };
+
   const fetchAttendance = async () => {
     if (!sectionId) {
       setMessage("Please enter a section ID.");
@@ -54,15 +83,17 @@ const AttendanceList = ({ contract, account, isStudentMode = false }) => {
     }
 
     try {
+      await fetchStudentNames(students);
+
       const data = await Promise.all(
         students.map(async (student) => {
           const result = await contract.methods
             .getCombinedAttendance(student, sectionId)
             .call({ from: account });
-          const name = await contract.methods.getUserName(student).call();
+          
           return {
             student,
-            name: name.length > 0 ? name : "Unnamed",
+            name: studentNames[student] || "Unnamed",
             attended: parseInt(result.attended),
             total: parseInt(result.total),
             percentage: result.total > 0 ? (parseInt(result.attended) / parseInt(result.total)) * 100 : 0,
@@ -122,9 +153,41 @@ const AttendanceList = ({ contract, account, isStudentMode = false }) => {
     setMessage("");
   };
 
+  const exportToCSV = () => {
+    if (attendanceData.length === 0) {
+      setMessage("No data to export");
+      return;
+    }
+
+    const headers = ["Name", "Address", "Section", "Attended", "Total", "Percentage"];
+    const csvData = attendanceData.map(data => [
+      data.name,
+      data.student,
+      sectionId,
+      data.attended,
+      data.total,
+      data.percentage.toFixed(2) + "%"
+    ]);
+
+    const csvContent = [
+      headers.join(","),
+      ...csvData.map(row => row.join(","))
+    ].join("\n");
+
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `attendance_section_${sectionId}_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     if (isStudentMode && contract && account) {
       setStudentAddresses([account]);
+      fetchStudentNames([account]);
     }
   }, [contract, account, isStudentMode]);
 
@@ -193,18 +256,27 @@ const AttendanceList = ({ contract, account, isStudentMode = false }) => {
               </select>
               <button className="att" onClick={filterAttendance}>Filter</button>
               <button className="att" onClick={resetList}>Reset</button>
+              {attendanceData.length > 0 && (
+                <button className="att" onClick={exportToCSV}>Export to CSV</button>
+              )}
             </div>
           )}
     
           {attendanceData.length > 0 ? (
-            <ul>
-              {attendanceData.map((data, index) => (
-                <li key={index}>
-                  Student: {data.name} ({data.student}) | Section: {sectionId} | Attended: {data.attended} | 
-                  Total: {data.total} | Percentage: {data.percentage.toFixed(2)}%
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul>
+                {attendanceData.map((data, index) => (
+                  <li key={index}>
+                    Student: {data.name} ({data.student}) | Section: {sectionId} | Attended: {data.attended} | 
+                    Total: {data.total} | Percentage: {data.percentage.toFixed(2)}%
+                  </li>
+                ))}
+              </ul>
+              <p>Total Students: {attendanceData.length}</p>
+              <p>Average Attendance: {
+                (attendanceData.reduce((sum, data) => sum + data.percentage, 0) / attendanceData.length).toFixed(2)
+              }%</p>
+            </>
           ) : (
             <p>No attendance data available yet.</p>
           )}

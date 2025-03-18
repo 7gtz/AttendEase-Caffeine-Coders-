@@ -1,7 +1,7 @@
 import React from "react";
 import AdminPanel from "../components/Panels/AdminPanel";
 
-const AdminPage = ({ contract, account, role }) => {
+const AdminPage = ({ contract, account}) => {
   return (
     <div>
       <h2>Admin Dashboard</h2>
