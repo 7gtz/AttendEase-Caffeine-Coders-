@@ -5,17 +5,17 @@ const Header = ({ account, role, userName }) => {
   return (
     <header>
       <nav>
-        <ul class="nav">
+        <ul className="nav">
           <li><Link to="/">Home</Link></li>
-          {role === "admin" && <li><Link to="/sections">Sections</Link></li>}
+          <li><Link to="/sections">Sections</Link></li>
           <li><Link to="/subjects">Subjects</Link></li>
           <li><Link to="/attendance">Attendance</Link></li>
-          {role === "admin" && <li><Link to="/admin">Admin</Link></li>}
-          {(role === "teacher" || role === "admin") && <li><Link to="/teacher">Teacher</Link></li>}
-          <li><Link to="/student">Student</Link></li> {/* Added for completeness */}
+          <li><Link to="/admin">Admin</Link></li>
+          <li><Link to="/teacher">Teacher</Link></li>
+          <li><Link to="/student">Student</Link></li>
         </ul>
       </nav>
-      <p>Connected: {userName} ({account})</p> {/* Optional: Show account */}
+      <p>Connected: {userName} ({account})</p>
     </header>
   );
 };

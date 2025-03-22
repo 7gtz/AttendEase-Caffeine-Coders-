@@ -5,7 +5,7 @@ contract CollegeAttendance {
 
     constructor() {
         admin = 0x850692CE85850278B754695fa4eb69d6840745d5; 
-        admin = message.sender;
+        admin = msg.sender;
     }
 
     struct Subject {

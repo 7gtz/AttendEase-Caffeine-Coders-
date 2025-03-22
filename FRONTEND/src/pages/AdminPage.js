@@ -10,11 +10,7 @@ const AdminPage = ({ contract, account, role }) => {
           <h3>Admin Panel</h3>
           <p>Welcome to the Admin Panel.</p>
           <p>Manage sections, subjects, students, and adjustments.</p>
-          {role === "admin" ? (
-            <AdminPanel contract={contract} account={account} />
-          ) : (
-            <p>You do not have permission to access the Admin Panel.</p>
-          )}
+          <AdminPanel contract={contract} account={account} />
         </div>
       ) : (
         <p>Please connect your wallet to access admin features.</p>

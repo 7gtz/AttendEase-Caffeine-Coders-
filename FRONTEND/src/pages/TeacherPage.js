@@ -1,18 +1,14 @@
 import React from "react";
 import TeacherPanel from "../components/Panels/TeacherPanel";
 
-const TeacherPage = ({ contract, account, role}) => {
+const TeacherPage = ({ contract, account, role }) => {
   return (
     <div>
       <h2>Teacher Dashboard</h2>
       {contract && account ? (
-        <div>
+        <div className="panel">
           <p>Schedule classes and manage attendance.</p>
-          {role === "teacher" || role === "admin" ? (
-            <TeacherPanel contract={contract} account={account} />
-          ) : (
-            <p>You do not have permission to access the Teacher Panel.</p>
-          )}
+          <TeacherPanel contract={contract} account={account} />
         </div>
       ) : (
         <p>Please connect your wallet to access teacher features.</p>
